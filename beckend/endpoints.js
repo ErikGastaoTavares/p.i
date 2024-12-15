@@ -1,73 +1,190 @@
-
-//TODOS OS DADOS DA
-  fetch('http://localhost:3000/dados/k72623_lo')
+// Estação Aeroporto - Temperatura
+fetch('http://localhost:3000/estacaoAeroporto_temperature_atual')
   .then(response => response.json())
-  .then(data => console.log(data))
+  .then(data => console.log('Estação Aeroporto - Temperatura Atual:', data))
   .catch(error => console.error('Erro:', error));
 
-  //TODOS OS DADOS
-  fetch('http://localhost:3000/dados/nit2xli')
+fetch('http://localhost:3000/estacaoAeroporto_temperature_avg_daily')
   .then(response => response.json())
-  .then(data => console.log(data))
+  .then(data => console.log('Estação Aeroporto - Média Diária de Temperatura:', data))
   .catch(error => console.error('Erro:', error));
 
-  //ULTIMAS 12 H
-  fetch('http://localhost:3000/dados/k72623_lo/ultimas_12h')
+fetch('http://localhost:3000/estacaoAeroporto_temperature_avg_mouth')
   .then(response => response.json())
-  .then(data => console.log(data))
+  .then(data => console.log('Estação Aeroporto - Média Mensal de Temperatura:', data))
   .catch(error => console.error('Erro:', error));
 
-  //ULTIMAS 12 H
-  fetch('http://localhost:3000/dados/nit2xli/ultimas_12h')
+// Estação Aeroporto - Umidade
+fetch('http://localhost:3000/estacaoAeroporto_humidity_atual')
   .then(response => response.json())
-  .then(data => console.log(data))
+  .then(data => console.log('Estação Aeroporto - Umidade Atual:', data))
   .catch(error => console.error('Erro:', error));
 
-
-  //ULTIMOS 10 REG
-  fetch('http://localhost:3000/dados/k72623_lo/ultimos_10reg')
+fetch('http://localhost:3000/estacaoAeroporto_humidity_avg_daily')
   .then(response => response.json())
-  .then(data => console.log(data))
+  .then(data => console.log('Estação Aeroporto - Média Diária de Umidade:', data))
   .catch(error => console.error('Erro:', error));
 
-  //ULTIMOS 10 REG
-  fetch('http://localhost:3000/dados/nit2xli/ultimos_10reg')
+fetch('http://localhost:3000/estacaoAeroporto_humidity_avg_mouth')
   .then(response => response.json())
-  .then(data => console.log(data))
+  .then(data => console.log('Estação Aeroporto - Média Mensal de Umidade:', data))
   .catch(error => console.error('Erro:', error));
 
-     //ULTIMOS 7 DIAS
-     fetch('http://localhost:3000/dados/k72623_lo/ultimos_7d')
-     .then(response => response.json())
-     .then(data => console.log(data))
-     .catch(error => console.error('Erro:', error));
+// Estação Aeroporto - Luminosidade
+fetch('http://localhost:3000/estacaoAeroporto_luminosity_atual')
+  .then(response => response.json())
+  .then(data => console.log('Estação Aeroporto - Luminosidade Atual:', data))
+  .catch(error => console.error('Erro:', error));
 
-   //ULTIMOS 7 DIAS
-   fetch('http://localhost:3000/dados/nit2xli/ultimos_7d')
-   .then(response => response.json())
-   .then(data => console.log(data))
-   .catch(error => console.error('Erro:', error));
+fetch('http://localhost:3000/estacaoAeroporto_luminosity_avg_daily')
+  .then(response => response.json())
+  .then(data => console.log('Estação Aeroporto - Média Diária de Luminosidade:', data))
+  .catch(error => console.error('Erro:', error));
 
-   //ultimos 30 dias
+fetch('http://localhost:3000/estacaoAeroporto_luminosity_avg_mouth')
+  .then(response => response.json())
+  .then(data => console.log('Estação Aeroporto - Média Mensal de Luminosidade:', data))
+  .catch(error => console.error('Erro:', error));
 
-   fetch('http://localhost:3000/dados/k72623_lo/ultimos_30d')
-   .then(response => response.json())
-   .then(data => console.log(data))
-   .catch(error => console.error('Erro:', error));
+// Estação Aeroporto - Chuva
+fetch('http://localhost:3000/estacaoAeroporto_rain_atual')
+  .then(response => response.json())
+  .then(data => console.log('Estação Aeroporto - Chuva Atual:', data))
+  .catch(error => console.error('Erro:', error));
 
-   //ultimos 30 dias
+fetch('http://localhost:3000/estacaoAeroporto_rain_avg_daily')
+  .then(response => response.json())
+  .then(data => console.log('Estação Aeroporto - Média Diária de Chuva:', data))
+  .catch(error => console.error('Erro:', error));
 
-   fetch('http://localhost:3000/dados/nit2xli/ultimos_30d')
-   .then(response => response.json())
-   .then(data => console.log(data))
-   .catch(error => console.error('Erro:', error));
+fetch('http://localhost:3000/estacaoAeroporto_rain_avg_mouth')
+  .then(response => response.json())
+  .then(data => console.log('Estação Aeroporto - Média Mensal de Chuva:', data))
+  .catch(error => console.error('Erro:', error));
+// Estação Cruzeiro - Temperatura
+fetch('http://localhost:3000/estacaoCruzeiro_temperature_atual')
+  .then(response => response.json())
+  .then(data => console.log('Estação Cruzeiro - Temperatura Atual:', data))
+  .catch(error => console.error('Erro:', error));
 
-   fetch('http://localhost:3000/dados/k72623_lo/sensores')
-   .then(response => response.json())
-   .then(data => console.log(data))
-   .catch(error => console.error('Erro:', error));
+fetch('http://localhost:3000/estacaoCruzeiro_temperature_avg_daily')
+  .then(response => response.json())
+  .then(data => console.log('Estação Cruzeiro - Média Diária de Temperatura:', data))
+  .catch(error => console.error('Erro:', error));
 
-   fetch('http://localhost:3000/dados/nit2xli/sensores')
-   .then(response => response.json())
-   .then(data => console.log(data))
-   .catch(error => console.error('Erro:', error));
+fetch('http://localhost:3000/estacaoCruzeiro_temperature_avg_mouth')
+  .then(response => response.json())
+  .then(data => console.log('Estação Cruzeiro - Média Mensal de Temperatura:', data))
+  .catch(error => console.error('Erro:', error));
+
+// Estação Cruzeiro - Umidade
+fetch('http://localhost:3000/estacaoCruzeiro_humidity_atual')
+  .then(response => response.json())
+  .then(data => console.log('Estação Cruzeiro - Umidade Atual:', data))
+  .catch(error => console.error('Erro:', error));
+
+fetch('http://localhost:3000/estacaoCruzeiro_humidity_avg_daily')
+  .then(response => response.json())
+  .then(data => console.log('Estação Cruzeiro - Média Diária de Umidade:', data))
+  .catch(error => console.error('Erro:', error));
+
+fetch('http://localhost:3000/estacaoCruzeiro_humidity_avg_mouth')
+  .then(response => response.json())
+  .then(data => console.log('Estação Cruzeiro - Média Mensal de Umidade:', data))
+  .catch(error => console.error('Erro:', error));
+
+// Estação Cruzeiro - Luminosidade
+fetch('http://localhost:3000/estacaoCruzeiro_luminosity_atual')
+  .then(response => response.json())
+  .then(data => console.log('Estação Cruzeiro - Luminosidade Atual:', data))
+  .catch(error => console.error('Erro:', error));
+
+fetch('http://localhost:3000/estacaoCruzeiro_luminosity_avg_daily')
+  .then(response => response.json())
+  .then(data => console.log('Estação Cruzeiro - Média Diária de Luminosidade:', data))
+  .catch(error => console.error('Erro:', error));
+
+fetch('http://localhost:3000/estacaoCruzeiro_luminosity_avg_mouth')
+  .then(response => response.json())
+  .then(data => console.log('Estação Cruzeiro - Média Mensal de Luminosidade:', data))
+  .catch(error => console.error('Erro:', error));
+
+// Estação Cruzeiro - Chuva
+fetch('http://localhost:3000/estacaoCruzeiro_rain_atual')
+  .then(response => response.json())
+  .then(data => console.log('Estação Cruzeiro - Chuva Atual:', data))
+  .catch(error => console.error('Erro:', error));
+
+fetch('http://localhost:3000/estacaoCruzeiro_rain_avg_daily')
+  .then(response => response.json())
+  .then(data => console.log('Estação Cruzeiro - Média Diária de Chuva:', data))
+  .catch(error => console.error('Erro:', error));
+
+fetch('http://localhost:3000/estacaoCruzeiro_rain_avg_mouth')
+  .then(response => response.json())
+  .then(data => console.log('Estação Cruzeiro - Média Mensal de Chuva:', data))
+  .catch(error => console.error('Erro:', error));
+
+// Rotula Taffarel - Poluição
+fetch('http://localhost:3000/rotulaTaffarel_atual_poluicao')
+  .then(response => response.json())
+  .then(data => console.log('Rotula Taffarel - Poluição Atual:', data))
+  .catch(error => console.error('Erro:', error));
+
+fetch('http://localhost:3000/rotulaTaffarel_daily_avg_poluicao')
+  .then(response => response.json())
+  .then(data => console.log('Rotula Taffarel - Média Diária de Poluição:', data))
+  .catch(error => console.error('Erro:', error));
+
+fetch('http://localhost:3000/rotulaTaffarel_month_avg_poluicao')
+  .then(response => response.json())
+  .then(data => console.log('Rotula Taffarel - Média Mensal de Poluição:', data))
+  .catch(error => console.error('Erro:', error));
+
+// Rotula Taffarel - Temperatura
+fetch('http://localhost:3000/rotulaTaffarel_atual_temperature')
+  .then(response => response.json())
+  .then(data => console.log('Rotula Taffarel - Temperatura Atual:', data))
+  .catch(error => console.error('Erro:', error));
+
+fetch('http://localhost:3000/rotulaTaffarel_daily_avg_temperature')
+  .then(response => response.json())
+  .then(data => console.log('Rotula Taffarel - Média Diária de Temperatura:', data))
+  .catch(error => console.error('Erro:', error));
+
+fetch('http://localhost:3000/rotulaTaffarel_month_avg_temperature')
+  .then(response => response.json())
+  .then(data => console.log('Rotula Taffarel - Média Mensal de Temperatura:', data))
+  .catch(error => console.error('Erro:', error));
+
+// Rotula Taffarel - Umidade
+fetch('http://localhost:3000/rotulaTaffarel_atual_humidity')
+  .then(response => response.json())
+  .then(data => console.log('Rotula Taffarel - Umidade Atual:', data))
+  .catch(error => console.error('Erro:', error));
+
+fetch('http://localhost:3000/rotulaTaffarel_daily_avg_humidity')
+  .then(response => response.json())
+  .then(data => console.log('Rotula Taffarel - Média Diária de Umidade:', data))
+  .catch(error => console.error('Erro:', error));
+
+fetch('http://localhost:3000/rotulaTaffarel_month_avg_humidity')
+  .then(response => response.json())
+  .then(data => console.log('Rotula Taffarel - Média Mensal de Umidade:', data))
+  .catch(error => console.error('Erro:', error));
+
+// Rotula Taffarel - Ruído
+fetch('http://localhost:3000/rotulaTaffarel_atual_noise')
+  .then(response => response.json())
+  .then(data => console.log('Rotula Taffarel - Ruído Atual:', data))
+  .catch(error => console.error('Erro:', error));
+
+fetch('http://localhost:3000/rotulaTaffarel_daily_avg_noise')
+  .then(response => response.json())
+  .then(data => console.log('Rotula Taffarel - Média Diária de Ruído:', data))
+  .catch(error => console.error('Erro:', error));
+
+fetch('http://localhost:3000/rotulaTaffarel_month_avg_noise')
+  .then(response => response.json())
+  .then(data => console.log('Rotula Taffarel - Média Mensal de Ruído:', data))
+  .catch(error => console.error('Erro:', error));
