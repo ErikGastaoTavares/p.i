@@ -2,3 +2,7 @@ sera necessario mudar algumas configurações no arquivo:
 create-tables>app-sync>main.py
 linha 7: log_file_path = os.path.join ('C:', os.sep, 'Users', 'erikg', 'Desktop', 'API', 'create-tables', 'app-sync', 'logs', 'sync.log')
 essa é a localização onde será criado o arquivo de logs de suas execuções, atualizações, erros.
+
+tambem deve-se mudar no arquivo codigo_loop.py na linha 11:
+'python', r'C:/Users/erikg/Desktop/API/create-tables/app-sync/main.py
+mude para localizaçao do seu arquivo main.py uqe sera executado por este codigo_loop
