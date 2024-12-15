@@ -1,6 +1,7 @@
 const express = require('express');
 const { Pool } = require('pg');
 const app = express();
+const cors = require('cors');
 
 // Configuração da conexão com PostgreSQL
 const pool = new Pool({
@@ -10,6 +11,9 @@ const pool = new Pool({
   password: 'admin',
   port: 5432,
 });
+
+// Habilita o CORS para o frontend na porta 3001
+app.use(cors({ origin: 'http://localhost:3001' }));
 
 app.use(express.json());
 
