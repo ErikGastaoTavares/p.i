@@ -1,0 +1,14 @@
+#!/bin/bash
+sudo apt-get updade -y
+sudo apt-get upgrade -y
+sudo apt install nodejs -y
+sudo apt install npm -y
+sudo npm intall cache clean -f
+sudo npm install -g n -y
+sudo n stable -y
+sudo npm install -g pm2 -y
+sudo apt install nginx -y
+sudo apt install postgresql-client -y
+sudo apt install python3-pip -y
+pip install psycopg2-binary --break-system-packages
+pip install python-dotenv --break-system-pachages

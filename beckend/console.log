@@ -1,0 +1,12 @@
+function carregarDados() {
+  console.log('Botão pressionado, fazendo requisição...');  // Verifique se essa mensagem aparece no console
+  // Requisição GET com Axios
+  axios.get('http://localhost:3000/dados/k72623_lo/ultimos_10reg')
+    .then(response => {
+      console.log(response.data);  // Mostra os dados no console
+      document.getElementById('resultado').textContent = JSON.stringify(response.data, null, 2);
+    })
+    .catch(error => {
+      console.error('Erro ao carregar dados:', error);
+    });
+}
