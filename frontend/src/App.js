@@ -1,14 +1,15 @@
-// src/App.js
 import React from 'react';
-import './App.css';
-import EndpointsDisplay from './components/EndpointsDisplay'; // Verifique o caminho correto
+import EndpointsDisplay from './components/EndpointsDisplay'; // Importando o componente principal
+import { CssBaseline } from '@mui/material';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Endpoints da API</h1>
+    <>
+      {/* Define reset de estilos padrão */}
+      <CssBaseline />
+      {/* Componente principal */}
       <EndpointsDisplay />
-    </div>
+    </>
   );
 }
 

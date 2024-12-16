@@ -12,10 +12,13 @@ const pool = new Pool({
   port: 5432,
 });
 
-// Habilita o CORS para o frontend na porta 3001
-app.use(cors({ origin: 'http://localhost:3001' }));
+const corsOptions = {
+  origin: '*', // Permite qualquer origem
+};
+app.use(cors(corsOptions));
 
 app.use(express.json());
+
 
 //-------ESTAÇÃO AEROPORTO
 
@@ -53,7 +56,7 @@ app.get('/estacaoAeroporto_temperature_avg_daily', async (req, res) => {
   }
 });
 
-app.get('/estacaoAeroporto_temperature_avg_mouth', async (req, res) => {
+app.get('/estacaoAeroporto_temperature_avg_month', async (req, res) => {
   try {
     const resultado = await pool.query(`
       SELECT DATE(time) AS date, 
@@ -107,7 +110,7 @@ app.get('/estacaoAeroporto_humidity_avg_daily', async (req, res) => {
   }
 });
 
-app.get('/estacaoAeroporto_humidity_avg_mouth', async (req, res) => {
+app.get('/estacaoAeroporto_humidity_avg_month', async (req, res) => {
   try {
     const resultado = await pool.query(`
       SELECT DATE(time) AS date, 
@@ -161,7 +164,7 @@ app.get('/estacaoAeroporto_luminosity_avg_daily', async (req, res) => {
   }
 });
 
-app.get('/estacaoAeroporto_luminosity_avg_mouth', async (req, res) => {
+app.get('/estacaoAeroporto_luminosity_avg_month', async (req, res) => {
   try {
     const resultado = await pool.query(`
       SELECT DATE(time) AS date, 
@@ -215,7 +218,7 @@ app.get('/estacaoAeroporto_rain_avg_daily', async (req, res) => {
   }
 });
 
-app.get('/estacaoAeroporto_rain_avg_mouth', async (req, res) => {
+app.get('/estacaoAeroporto_rain_avg_month', async (req, res) => {
   try {
     const resultado = await pool.query(`
       SELECT DATE(time) AS date, 
@@ -235,7 +238,7 @@ app.get('/estacaoAeroporto_rain_avg_mouth', async (req, res) => {
 });
 
 // Wind Speed Routes for Estação Aeroporto
-app.get('/estacaoAeroporto_wind_speed_avg_mouth', async (req, res) => {
+app.get('/estacaoAeroporto_wind_speed_avg_month', async (req, res) => {
   try {
     const resultado = await pool.query(`
       SELECT DATE(time) AS date, 
@@ -255,7 +258,7 @@ app.get('/estacaoAeroporto_wind_speed_avg_mouth', async (req, res) => {
 });
 
 // Wind Direction Routes for Estação Aeroporto
-app.get('/estacaoAeroporto_wind_direction_avg_mouth', async (req, res) => {
+app.get('/estacaoAeroporto_wind_direction_avg_month', async (req, res) => {
   try {
     const resultado = await pool.query(`
       SELECT DATE(time) AS date, 
@@ -275,7 +278,7 @@ app.get('/estacaoAeroporto_wind_direction_avg_mouth', async (req, res) => {
 });
 
 // Solar Radiation Routes for Estação Aeroporto
-app.get('/estacaoAeroporto_solar_radiation_avg_mouth', async (req, res) => {
+app.get('/estacaoAeroporto_solar_radiation_avg_month', async (req, res) => {
   try {
     const resultado = await pool.query(`
       SELECT DATE(time) AS date, 
@@ -330,7 +333,7 @@ app.get('/estacaoCruzeiro_temperature_avg_daily', async (req, res) => {
   }
 });
 
-app.get('/estacaoCruzeiro_temperature_avg_mouth', async (req, res) => {
+app.get('/estacaoCruzeiro_temperature_avg_month', async (req, res) => {
   try {
     const resultado = await pool.query(`
       SELECT DATE(time) AS date, 
@@ -384,7 +387,7 @@ app.get('/estacaoCruzeiro_humidity_avg_daily', async (req, res) => {
   }
 });
 
-app.get('/estacaoCruzeiro_humidity_avg_mouth', async (req, res) => {
+app.get('/estacaoCruzeiro_humidity_avg_month', async (req, res) => {
   try {
     const resultado = await pool.query(`
       SELECT DATE(time) AS date, 
@@ -438,7 +441,7 @@ app.get('/estacaoCruzeiro_luminosity_avg_daily', async (req, res) => {
   }
 });
 
-app.get('/estacaoCruzeiro_luminosity_avg_mouth', async (req, res) => {
+app.get('/estacaoCruzeiro_luminosity_avg_month', async (req, res) => {
   try {
     const resultado = await pool.query(`
       SELECT DATE(time) AS date, 
@@ -492,7 +495,7 @@ app.get('/estacaoCruzeiro_rain_avg_daily', async (req, res) => {
   }
 });
 
-app.get('/estacaoCruzeiro_rain_avg_mouth', async (req, res) => {
+app.get('/estacaoCruzeiro_rain_avg_month', async (req, res) => {
   try {
     const resultado = await pool.query(`
       SELECT DATE(time) AS date, 
@@ -512,7 +515,7 @@ app.get('/estacaoCruzeiro_rain_avg_mouth', async (req, res) => {
 });
 
 // Wind Speed Routes for Estação Cruzeiro
-app.get('/estacaoCruzeiro_wind_speed_avg_mouth', async (req, res) => {
+app.get('/estacaoCruzeiro_wind_speed_avg_month', async (req, res) => {
   try {
     const resultado = await pool.query(`
       SELECT DATE(time) AS date, 
@@ -532,7 +535,7 @@ app.get('/estacaoCruzeiro_wind_speed_avg_mouth', async (req, res) => {
 });
 
 // Wind Direction Routes for Estação Cruzeiro
-app.get('/estacaoCruzeiro_wind_direction_avg_mouth', async (req, res) => {
+app.get('/estacaoCruzeiro_wind_direction_avg_month', async (req, res) => {
   try {
     const resultado = await pool.query(`
       SELECT DATE(time) AS date, 
@@ -552,7 +555,7 @@ app.get('/estacaoCruzeiro_wind_direction_avg_mouth', async (req, res) => {
 });
 
 // Solar Radiation Routes for Estação Cruzeiro
-app.get('/estacaoCruzeiro_solar_radiation_avg_mouth', async (req, res) => {
+app.get('/estacaoCruzeiro_solar_radiation_avg_month', async (req, res) => {
   try {
     const resultado = await pool.query(`
       SELECT DATE(time) AS date, 
