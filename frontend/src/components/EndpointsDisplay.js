@@ -1,39 +1,49 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Box,
-  Grid,
+  Box, 
+  Grid, 
   Typography,
-  Card,
-  CardContent,
-  Drawer,
-  Toolbar,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Divider,
-  CircularProgress,
+  Card, 
+  CardContent, 
+  Drawer, 
+  Toolbar, 
+  List, ListItem,
+  ListItemIcon, 
+  ListItemText, Divider,
+  CircularProgress
 } from '@mui/material';
-import {
-  Thermostat,
-  Opacity,
-  Cloud,
-  NoiseAware,
-  Dashboard,
-  WbIncandescent,
-  WaterDrop,
-  SmokingRooms,
+import { 
+  Thermostat, 
+  Opacity, 
+  Cloud, 
+  NoiseAware, 
+  Dashboard, 
+  WaterDrop, 
+  WbIncandescent, 
+  SmokingRooms 
 } from '@mui/icons-material';
+import { 
+  LineChart, 
+  Line, 
+  XAxis, 
+  YAxis, 
+  CartesianGrid, 
+  Tooltip, 
+  Legend, 
+  ResponsiveContainer 
+} from 'recharts';
 
 // Logo import
 const logoUrl = `${process.env.PUBLIC_URL}/logo.png`;
 
 // Card Component
-const CardComponent = ({ title, value, unit, color, icon: Icon }) => (
-  <Card sx={{ minWidth: 250, textAlign: 'center', margin: '10px', boxShadow: 3 }}>
+const CardComponent = ({ title, value, unit, color, icon: Icon }) => {
+  console.log('CardComponent props:', { title, value, unit, color, icon: Icon }); // Log para depuração
+  return (
+    <Card sx={{ minWidth: 250, textAlign: 'center', margin: '10px', boxShadow: 3 }}>
     <CardContent>
       <Box display="flex" justifyContent="center" alignItems="center" mb={1}>
-        <Icon sx={{ color: color, fontSize: 40, mr: 1 }} />
+        {Icon && <Icon sx={{ color: color, fontSize: 40, mr: 1 }} />}
         <Typography variant="h4" sx={{ color }}>
           {value !== null && !isNaN(Number(value)) ? `${Number(value).toFixed(1)} ${unit}` : 'N/A'}
         </Typography>
@@ -43,7 +53,8 @@ const CardComponent = ({ title, value, unit, color, icon: Icon }) => (
       </Typography>
     </CardContent>
   </Card>
-);
+  );
+};
 
 const EndpointsDisplay = () => {
   const [data, setData] = useState([]);
@@ -53,72 +64,84 @@ const EndpointsDisplay = () => {
   // Fetch data
   const fetchData = async () => {
     try {
+      console.log('Fetching data...'); // Log para verificar se a função é chamada
       const endpoints = [
-        //----------------------ENDPOINTS DA ESTAÇÃO AEROPORTO
-        { id: 'aero_temp', url: 'estacaoAeroporto_temperature_atual', title: 'Temp. Atual Aeroporto', unit: '°C', color: '#f44336', icon: Thermostat, Category: 'Estação Aeroporto' },
-        { id: 'aero_temp_avg', url: 'estacaoAeroporto_temperature_avg_daily', title: 'Temp. Média Diária Aeroporto', unit: '°C', color: '#f44336', icon: Thermostat, Category: 'Estação Aeroporto' },
-        { id: 'aero_temp_avg_month', url: 'estacaoAeroporto_temperature_avg_month', title: 'Temp. Média Diária Mensal Aeroporto', unit: '°C', color: '#f44336', icon: Thermostat, Category: 'Estação Aeroporto' },
+        // Adicione seus endpoints aqui, como no código original
+               //----------------------ENDPOINTS DA ESTAÇÃO AEROPORTO
+               { id: 'aero_temp', url: 'estacaoAeroporto_temperature_atual', title: 'Temp. Atual Aeroporto', unit: '°C', color: '#f44336', icon: Thermostat, Category: 'Estação Aeroporto' },
+               { id: 'aero_temp_avg', url: 'estacaoAeroporto_temperature_avg_daily', title: 'Temp. Média Diária Aeroporto', unit: '°C', color: '#f44336', icon: Thermostat, Category: 'Estação Aeroporto' },
+               { id: 'aero_temp_avg_month', url: 'estacaoAeroporto_temperature_avg_month', title: 'Temp. Média Diária Mensal Aeroporto', unit: '°C', color: '#f44336', icon: Thermostat, Category: 'Estação Aeroporto' },
+       
+               { id: 'aero_hum', url: 'estacaoAeroporto_humidity_atual', title: 'Umidade Atual Aeroporto', unit: '%', color: '#4caf50', icon: Opacity, Category: 'Estação Aeroporto' },
+               { id: 'aero_hum_avg', url: 'estacaoAeroporto_humidity_avg_daily', title: 'Umi. Média Diária Aeroporto', unit: '%', color: '#4caf50', icon: Opacity, Category: 'Estação Aeroporto' },
+               { id: 'aero_hum_avg_month', url: 'estacaoAeroporto_humidity_avg_month', title: 'Umi. Média Mensal Diária Aeroporto', unit: '%', color: '#4caf50', icon: Opacity, Category: 'Estação Aeroporto' },
+       
+               { id: 'aero_lum', url: 'estacaoAeroporto_luminosity_atual', title: 'Luminosidade Atual Aeroporto', unit: 'Lux', color: '#e8e472', icon: WbIncandescent, Category: 'Estação Aeroporto' },
+               { id: 'aero_lum_avg', url: 'estacaoAeroporto_luminosity_avg_daily', title: 'Lum. Média Diária Aeroporto', unit: 'Lux', color: '#e8e472', icon: WbIncandescent, Category: 'Estação Aeroporto' },
+               { id: 'aero_lum_avg_month', url: 'estacaoAeroporto_luminosity_avg_month', title: 'Lum. Média Mensal Diária Aeroporto', unit: 'Lux', color: '#e8e472', icon: WbIncandescent, Category: 'Estação Aeroporto' },
+       
+               { id: 'aero_rain', url: 'estacaoAeroporto_rain_atual', title: 'Precipitação Atual Aeroporto', unit: '???', color: '#3F4ABF', icon: WaterDrop, Category: 'Estação Aeroporto' },
+               { id: 'aero_rain_avg', url: 'estacaoAeroporto_rain_avg_daily', title: 'Prec. Média Diária Aeroporto', unit: '???', color: '#3F4ABF', icon: WaterDrop, Category: 'Estação Aeroporto' },
+               { id: 'aero_rain_avg_month', url: 'estacaoAeroporto_rain_avg_month', title: 'Prec. Média Diária Mensal Aeroporto', unit: '???', color: '#3F4ABF', icon: WaterDrop, Category: 'Estação Aeroporto' },
+       
+               //-------------------ENDPOINTS DA ESTAÇÃO CRUZEIRO
+               { id: 'cruz_temp', url: 'estacaoCruzeiro_temperature_atual', title: 'Temp. Atual Cruzeiro', unit: '°C', color: '#f44336', icon: Thermostat, Category: 'Estação Cruzeiro' },
+               { id: 'cruz_temp_avg', url: 'estacaoCruzeiro_temperature_avg_daily', title: 'Temp. Média Diária Cruzeiro', unit: '°C', color: '#f44336', icon: Thermostat, Category: 'Estação Cruzeiro' },
+               { id: 'cruz_temp_avg_month', url: 'estacaoCruzeiro_temperature_avg_month', title: 'Temp. Média Diária Mensal Cruzeiro', unit: '°C', color: '#f44336', icon: Thermostat, Category: 'Estação Cruzeiro' },
+       
+               { id: 'cruz_hum', url: 'estacaoCruzeiro_humidity_atual', title: 'Umidade Atual Cruzeiro', unit: '%', color: '#4caf50', icon: Opacity, Category: 'Estação Cruzeiro' },
+               { id: 'cruz_hum_avg', url: 'estacaoCruzeiro_humidity_avg_daily', title: 'Umi. Média Diária Cruzeiro', unit: '%', color: '#4caf50', icon: Opacity, Category: 'Estação Cruzeiro' },
+               { id: 'cruz_hum_avg_month', url: 'estacaoCruzeiro_humidity_avg_month', title: 'Umi. Média Mensal Diária Cruzeiro', unit: '%', color: '#4caf50', icon: Opacity, Category: 'Estação Cruzeiro' },
+       
+               { id: 'cruz_lum', url: 'estacaoCruzeiro_luminosity_atual', title: 'Luminosidade Atual Cruzeiro', unit: 'Lux', color: '#e8e472', icon: WbIncandescent, Category: 'Estação Cruzeiro' },
+               { id: 'cruz_lum_avg', url: 'estacaoCruzeiro_luminosity_avg_daily', title: 'Lum. Média Diária Cruzeiro', unit: 'Lux', color: '#e8e472', icon: WbIncandescent, Category: 'Estação Cruzeiro' },
+               { id: 'cruz_lum_avg_month', url: 'estacaoCruzeiro_luminosity_avg_month', title: 'Lum. Média Mensal Diária Cruzeiro', unit: 'Lux', color: '#e8e472', icon: WbIncandescent, Category: 'Estação Cruzeiro' },
+       
+               { id: 'cruz_rain', url: 'estacaoCruzeiro_rain_atual', title: 'Precipitação Atual Cruzeiro', unit: '???', color: '#3F4ABF', icon: WaterDrop, Category: 'Estação Cruzeiro' },
+               { id: 'cruz_rain_avg', url: 'estacaoCruzeiro_rain_avg_daily', title: 'Prec. Média Diária Cruzeiro', unit: '???', color: '#3F4ABF', icon: WaterDrop, Category: 'Estação Cruzeiro' },
+               { id: 'cruz_rain_avg_month', url: 'estacaoCruzeiro_rain_avg_month', title: 'Prec. Média Diária Mensal Cruzeiro', unit: '???', color: '#3F4ABF', icon: WaterDrop, Category: 'Estação Cruzeiro' },
+       
+               { id: 'noise', url: 'rotulaTaffarel_atual_noise', title: 'Ruído Atual Rotula do Taffarel', unit: 'dB', color: '#38250a', icon: NoiseAware, Category: 'Rotula Taffarel' },
+               { id: 'noise_avg', url: 'rotulaTaffarel_daily_avg_noise', title: 'Ruído Médio Diário Rótula do Taffarel', unit: 'dB', color: '#38250a', icon: NoiseAware, Category: 'Rotula Taffarel' },
+               { id: 'noise_avg_month', url: 'rotulaTaffarel_month_avg_noise', title: 'Ruído Médio Mensal Diário Rótula do Taffarel', unit: 'dB', color: '#38250a', icon: NoiseAware, Category: 'Rotula Taffarel' },
+             
+               { id: 'temp', url: 'rotulaTaffarel_atual_temperature', title: 'Ruído Atual Rotula do Taffarel', unit: 'dB', color: '#f44336', icon: Thermostat, Category: 'Rotula Taffarel' },
+               { id: 'temp_avg', url: 'rotulaTaffarel_daily_avg_temperature', title: 'Ruído Médio Diário Rótula do Taffarel', unit: 'dB', color: '#f44336', icon: Thermostat, Category: 'Rotula Taffarel' },
+               { id: 'temp_avg_month', url: 'rotulaTaffarel_month_avg_temperature', title: 'Ruído Médio Mensal Diário Rótula do Taffarel', unit: 'dB', color: '#f44336', icon: Thermostat, Category: 'Rotula Taffarel' },
+             
+               { id: 'humidity', url: 'rotulaTaffarel_atual_humidity', title: 'Umidade Atual Rotula do Taffarel', unit: 'dB', color: '#4caf50', icon: Opacity, Category: 'Rotula Taffarel' },
+               { id: 'humidity_avg', url: 'rotulaTaffarel_daily_avg_humidity', title: 'Umidade Média Diária Rótula do Taffarel', unit: 'dB', color: '#4caf50', icon: Opacity, Category: 'Rotula Taffarel' },
+               { id: 'humidity_avg_month', url: 'rotulaTaffarel_month_avg_humidity', title: 'Umidade Média Mensal Diária Rótula do Taffarel', unit: 'dB', color: '#4caf50', icon: Opacity, Category: 'Rotula Taffarel' },
+             
+               { id: 'poluicao', url: 'rotulaTaffarel_atual_poluicao', title: 'Poluição do Ar Atual Rotula do Taffarel', unit: 'dB', color: '#60605f', icon: SmokingRooms, Category: 'Rotula Taffarel' },
+               { id: 'poluicao_avg', url: 'rotulaTaffarel_daily_avg_poluicao', title: 'Pol. Ar Média Diária Rótula do Taffarel', unit: 'dB', color: '#60605f', icon: SmokingRooms, Category: 'Rotula Taffarel' },
+               { id: 'poluicao_avg_month', url: 'rotulaTaffarel_month_avg_poluicao', title: 'Pol. Ar Média Mensal Diária Rótula do Taffarel', unit: 'dB', color: '#60605f', icon: SmokingRooms, Category: 'Rotula Taffarel' },
+       
+             ];
 
-        { id: 'aero_hum', url: 'estacaoAeroporto_humidity_atual', title: 'Umidade Atual Aeroporto', unit: '%', color: '#4caf50', icon: Opacity, Category: 'Estação Aeroporto' },
-        { id: 'aero_hum_avg', url: 'estacaoAeroporto_humidity_avg_daily', title: 'Umi. Média Diária Aeroporto', unit: '%', color: '#4caf50', icon: Opacity, Category: 'Estação Aeroporto' },
-        { id: 'aero_hum_avg_month', url: 'estacaoAeroporto_humidity_avg_month', title: 'Umi. Média Mensal Diária Aeroporto', unit: '%', color: '#4caf50', icon: Opacity, Category: 'Estação Aeroporto' },
+      // Fetch data de todos os endpoints
+      const responses = await Promise.all(
+        endpoints.map(endpoint =>
+          fetch(`${process.env.REACT_APP_BACKEND_URL}/${endpoint.url}`)
+            .then(res => res.json())
+            .then(data => ({ id: endpoint.id, value: data.value, ...endpoint }))
+        )
+      );
 
-        { id: 'aero_lum', url: 'estacaoAeroporto_luminosity_atual', title: 'Luminosidade Atual Aeroporto', unit: 'Lux', color: '#e8e472', icon: WbIncandescent, Category: 'Estação Aeroporto' },
-        { id: 'aero_lum_avg', url: 'estacaoAeroporto_luminosity_avg_daily', title: 'Lum. Média Diária Aeroporto', unit: 'Lux', color: '#e8e472', icon: WbIncandescent, Category: 'Estação Aeroporto' },
-        { id: 'aero_lum_avg_month', url: 'estacaoAeroporto_luminosity_avg_month', title: 'Lum. Média Mensal Diária Aeroporto', unit: 'Lux', color: '#e8e472', icon: WbIncandescent, Category: 'Estação Aeroporto' },
-
-        { id: 'aero_rain', url: 'estacaoAeroporto_rain_atual', title: 'Precipitação Atual Aeroporto', unit: '???', color: '#3F4ABF', icon: WaterDrop, Category: 'Estação Aeroporto' },
-        { id: 'aero_rain_avg', url: 'estacaoAeroporto_rain_avg_daily', title: 'Prec. Média Diária Aeroporto', unit: '???', color: '#3F4ABF', icon: WaterDrop, Category: 'Estação Aeroporto' },
-        { id: 'aero_rain_avg_month', url: 'estacaoAeroporto_rain_avg_month', title: 'Prec. Média Diária Mensal Aeroporto', unit: '???', color: '#3F4ABF', icon: WaterDrop, Category: 'Estação Aeroporto' },
-
-        //-------------------ENDPOINTS DA ESTAÇÃO CRUZEIRO
-        { id: 'cruz_temp', url: 'estacaoCruzeiro_temperature_atual', title: 'Temp. Atual Cruzeiro', unit: '°C', color: '#f44336', icon: Thermostat, Category: 'Estação Cruzeiro' },
-        { id: 'cruz_temp_avg', url: 'estacaoCruzeiro_temperature_avg_daily', title: 'Temp. Média Diária Cruzeiro', unit: '°C', color: '#f44336', icon: Thermostat, Category: 'Estação Cruzeiro' },
-        { id: 'cruz_temp_avg_month', url: 'estacaoCruzeiro_temperature_avg_month', title: 'Temp. Média Diária Mensal Cruzeiro', unit: '°C', color: '#f44336', icon: Thermostat, Category: 'Estação Cruzeiro' },
-
-        { id: 'cruz_hum', url: 'estacaoCruzeiro_humidity_atual', title: 'Umidade Atual Cruzeiro', unit: '%', color: '#4caf50', icon: Opacity, Category: 'Estação Cruzeiro' },
-        { id: 'cruz_hum_avg', url: 'estacaoCruzeiro_humidity_avg_daily', title: 'Umi. Média Diária Cruzeiro', unit: '%', color: '#4caf50', icon: Opacity, Category: 'Estação Cruzeiro' },
-        { id: 'cruz_hum_avg_month', url: 'estacaoCruzeiro_humidity_avg_month', title: 'Umi. Média Mensal Diária Cruzeiro', unit: '%', color: '#4caf50', icon: Opacity, Category: 'Estação Cruzeiro' },
-
-        { id: 'cruz_lum', url: 'estacaoCruzeiro_luminosity_atual', title: 'Luminosidade Atual Cruzeiro', unit: 'Lux', color: '#e8e472', icon: WbIncandescent, Category: 'Estação Cruzeiro' },
-        { id: 'cruz_lum_avg', url: 'estacaoCruzeiro_luminosity_avg_daily', title: 'Lum. Média Diária Cruzeiro', unit: 'Lux', color: '#e8e472', icon: WbIncandescent, Category: 'Estação Cruzeiro' },
-        { id: 'cruz_lum_avg_month', url: 'estacaoCruzeiro_luminosity_avg_month', title: 'Lum. Média Mensal Diária Cruzeiro', unit: 'Lux', color: '#e8e472', icon: WbIncandescent, Category: 'Estação Cruzeiro' },
-
-        { id: 'cruz_rain', url: 'estacaoCruzeiro_rain_atual', title: 'Precipitação Atual Cruzeiro', unit: '???', color: '#3F4ABF', icon: WaterDrop, Category: 'Estação Cruzeiro' },
-        { id: 'cruz_rain_avg', url: 'estacaoCruzeiro_rain_avg_daily', title: 'Prec. Média Diária Cruzeiro', unit: '???', color: '#3F4ABF', icon: WaterDrop, Category: 'Estação Cruzeiro' },
-        { id: 'cruz_rain_avg_month', url: 'estacaoCruzeiro_rain_avg_month', title: 'Prec. Média Diária Mensal Cruzeiro', unit: '???', color: '#3F4ABF', icon: WaterDrop, Category: 'Estação Cruzeiro' },
-
-        { id: 'noise', url: 'rotulaTaffarel_atual_noise', title: 'Ruído Atual Rotula do Taffarel', unit: 'dB', color: '#38250a', icon: NoiseAware, Category: 'Rotula Taffarel' },
-        { id: 'noise_avg', url: 'rotulaTaffarel_daily_avg_noise', title: 'Ruído Médio Diário Rótula do Taffarel', unit: 'dB', color: '#38250a', icon: NoiseAware, Category: 'Rotula Taffarel' },
-        { id: 'noise_avg_month', url: 'rotulaTaffarel_month_avg_noise', title: 'Ruído Médio Mensal Diário Rótula do Taffarel', unit: 'dB', color: '#38250a', icon: NoiseAware, Category: 'Rotula Taffarel' },
-      
-        { id: 'temp', url: 'rotulaTaffarel_atual_temperature', title: 'Ruído Atual Rotula do Taffarel', unit: 'dB', color: '#f44336', icon: Thermostat, Category: 'Rotula Taffarel' },
-        { id: 'temp_avg', url: 'rotulaTaffarel_daily_avg_temperature', title: 'Ruído Médio Diário Rótula do Taffarel', unit: 'dB', color: '#f44336', icon: Thermostat, Category: 'Rotula Taffarel' },
-        { id: 'temp_avg_month', url: 'rotulaTaffarel_month_avg_temperature', title: 'Ruído Médio Mensal Diário Rótula do Taffarel', unit: 'dB', color: '#f44336', icon: Thermostat, Category: 'Rotula Taffarel' },
-      
-        { id: 'humidity', url: 'rotulaTaffarel_atual_humidity', title: 'Umidade Atual Rotula do Taffarel', unit: 'dB', color: '#4caf50', icon: Opacity, Category: 'Rotula Taffarel' },
-        { id: 'humidity_avg', url: 'rotulaTaffarel_daily_avg_humidity', title: 'Umidade Média Diária Rótula do Taffarel', unit: 'dB', color: '#4caf50', icon: Opacity, Category: 'Rotula Taffarel' },
-        { id: 'humidity_avg_month', url: 'rotulaTaffarel_month_avg_humidity', title: 'Umidade Média Mensal Diária Rótula do Taffarel', unit: 'dB', color: '#4caf50', icon: Opacity, Category: 'Rotula Taffarel' },
-      
-        { id: 'poluicao', url: 'rotulaTaffarel_atual_poluicao', title: 'Poluição do Ar Atual Rotula do Taffarel', unit: 'dB', color: '#60605f', icon: SmokingRooms, Category: 'Rotula Taffarel' },
-        { id: 'poluicao_avg', url: 'rotulaTaffarel_daily_avg_poluicao', title: 'Pol. Ar Média Diária Rótula do Taffarel', unit: 'dB', color: '#60605f', icon: SmokingRooms, Category: 'Rotula Taffarel' },
-        { id: 'poluicao_avg_month', url: 'rotulaTaffarel_month_avg_poluicao', title: 'Pol. Ar Média Mensal Diária Rótula do Taffarel', unit: 'dB', color: '#60605f', icon: SmokingRooms, Category: 'Rotula Taffarel' },
-
-      ];
-
-      const responses = await Promise.all(endpoints.map(endpoint =>
-        fetch(`${process.env.REACT_APP_BACKEND_URL}/${endpoint.url}`).then(res => res.json())
-          .then(data => ({ id: endpoint.id, value: data.value, ...endpoint }))));
-      
-      setData(responses);
+      setData(responses); // Atualiza o estado com os dados recebidos
     } catch (error) {
+      console.error('Error fetching data:', error); // Log do erro
       setError(error);
     } finally {
-      setLoading(false);
+      setLoading(false); // Sempre desativa o carregamento
     }
   };
 
-  // Organize data by categories
+  useEffect(() => {
+    fetchData(); // Busca os dados ao montar o componente
+  }, []);
+
+  // Agrupa os dados por categoria
   const groupedData = data.reduce((acc, item) => {
     if (!acc[item.Category]) {
       acc[item.Category] = [];
@@ -127,16 +150,15 @@ const EndpointsDisplay = () => {
     return acc;
   }, {});
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  console.log('Grouped Data:', groupedData); // Log para verificar os dados agrupados
 
+  // Renderização condicional
   if (loading) {
-    return <CircularProgress />;
+    return <CircularProgress />; // Indicador de carregamento
   }
 
   if (error) {
-    return <div>Error loading data</div>;
+    return <Typography color="error">Erro ao carregar os dados: {error.message}</Typography>;
   }
 
   return (
@@ -151,13 +173,13 @@ const EndpointsDisplay = () => {
         </Toolbar>
         <Divider />
         <List>
-          <ListItem button>
+          <ListItem>
             <ListItemIcon>
               <Dashboard sx={{ color: '#fff' }} />
             </ListItemIcon>
             <ListItemText primary="Visão Geral" />
           </ListItem>
-          <ListItem button>
+          <ListItem>
             <ListItemIcon>
               <Cloud sx={{ color: '#fff' }} />
             </ListItemIcon>
@@ -167,7 +189,7 @@ const EndpointsDisplay = () => {
       </Drawer>
 
       {/* Main Content */}
-      <Box component="main" sx={{ flexGrow: 1, padding: '280px' }}>
+      <Box component="main" sx={{ flexGrow: 1, padding: '20px', marginLeft: '220px' }}>
         <Grid container spacing={2}>
           {Object.keys(groupedData).map(category => (
             <Grid item xs={12} key={category}>
